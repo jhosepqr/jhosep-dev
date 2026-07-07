@@ -3,14 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>jhosep | Home</title>
+    <meta name="description" content="Tarjeta virtual de Jhosep Quiroz y nicao.tech con proyectos destacados y contacto profesional." />
+    <title>nicao.tech | Jhosep Quiroz</title>
     <style>
       :root {
-        --bg-1: #f6efe6;
-        --bg-2: #d9e8f5;
-        --ink: #1b1a19;
-        --accent: #cc5a2f;
-        --card: rgba(255, 255, 255, 0.65);
+        --bg: #07111d;
+        --bg-soft: #0d1827;
+        --panel: rgba(10, 18, 29, 0.72);
+        --panel-strong: rgba(14, 25, 39, 0.9);
+        --line: rgba(172, 195, 224, 0.14);
+        --line-strong: rgba(172, 195, 224, 0.22);
+        --text: #eef4fb;
+        --muted: #9fb2c8;
+        --accent: #8fe6c8;
+        --accent-2: #7da8ff;
+        --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+        --radius-xl: 32px;
+        --radius-lg: 24px;
+      }
+
+      html {
+        scroll-behavior: smooth;
       }
 
       * {
@@ -20,59 +33,635 @@
       body {
         margin: 0;
         min-height: 100vh;
-        font-family: "Space Grotesk", "Segoe UI", sans-serif;
-        color: var(--ink);
+        font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+        color: var(--text);
         background:
-          radial-gradient(circle at 20% 20%, rgba(204, 90, 47, 0.22), transparent 40%),
-          radial-gradient(circle at 80% 80%, rgba(29, 74, 120, 0.2), transparent 40%),
-          linear-gradient(135deg, var(--bg-1), var(--bg-2));
-        display: grid;
-        place-items: center;
+          radial-gradient(circle at 12% 18%, rgba(143, 230, 200, 0.14), transparent 24%),
+          radial-gradient(circle at 80% 20%, rgba(125, 168, 255, 0.16), transparent 26%),
+          radial-gradient(circle at 70% 82%, rgba(255, 203, 122, 0.1), transparent 22%),
+          linear-gradient(145deg, var(--bg), var(--bg-soft));
         padding: 24px;
+        position: relative;
+        overflow-x: hidden;
       }
 
-      .home {
-        width: min(900px, 100%);
-        background: var(--card);
-        border: 1px solid rgba(255, 255, 255, 0.75);
-        border-radius: 24px;
-        padding: 48px 28px;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 18px 40px rgba(16, 26, 37, 0.16);
-        text-align: center;
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        pointer-events: none;
+        z-index: 0;
+        border-radius: 999px;
+        filter: blur(40px);
+      }
+
+      body::before {
+        width: 420px;
+        height: 420px;
+        top: -120px;
+        left: -120px;
+        background: rgba(143, 230, 200, 0.2);
+      }
+
+      body::after {
+        width: 520px;
+        height: 520px;
+        right: -180px;
+        bottom: -180px;
+        background: rgba(125, 168, 255, 0.16);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .shell {
+        position: relative;
+        z-index: 1;
+        width: min(1160px, 100%);
+        margin: 0 auto;
+      }
+
+      .card {
+        background: linear-gradient(180deg, rgba(14, 25, 39, 0.92), rgba(7, 17, 29, 0.84));
+        border: 1px solid var(--line);
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(18px);
+        overflow: hidden;
+      }
+
+      .card__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 22px 24px;
+        border-bottom: 1px solid var(--line);
+        background: linear-gradient(90deg, rgba(143, 230, 200, 0.08), rgba(125, 168, 255, 0.06));
+      }
+
+      .brandline {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        min-width: 0;
+      }
+
+      .brandmark {
+        width: 54px;
+        height: 54px;
+        border-radius: 16px;
+        background:
+          radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.35), transparent 35%),
+          linear-gradient(135deg, rgba(143, 230, 200, 0.95), rgba(125, 168, 255, 0.95));
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        color: #07111d;
+        letter-spacing: 0.04em;
+      }
+
+      .brandcopy strong {
+        display: block;
+        font-size: 0.98rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .brandcopy span {
+        display: block;
+        color: var(--muted);
+        font-size: 0.92rem;
+        margin-top: 3px;
+      }
+
+      .badge {
+        padding: 10px 14px;
+        border: 1px solid var(--line-strong);
+        border-radius: 999px;
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.03);
+        font-size: 0.86rem;
+        white-space: nowrap;
+      }
+
+      .card__body {
+        padding: 28px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+        gap: 22px;
+        align-items: stretch;
+      }
+
+      .panel {
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background: var(--panel);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      }
+
+      .identity {
+        position: relative;
+        padding: 30px;
+        overflow: hidden;
+      }
+
+      .identity::after {
+        content: "";
+        position: absolute;
+        inset: auto -120px -120px auto;
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(143, 230, 200, 0.16), transparent 62%);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border: 1px solid var(--line-strong);
+        border-radius: 999px;
+        color: var(--accent);
+        font-size: 0.8rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 0 5px rgba(143, 230, 200, 0.12);
       }
 
       h1 {
-        margin: 0;
-        font-size: clamp(2.4rem, 10vw, 5.2rem);
-        letter-spacing: 0.06em;
-        text-transform: lowercase;
-      }
-
-      p {
         margin: 14px 0 0;
-        font-size: clamp(1rem, 3.2vw, 1.2rem);
-        opacity: 0.78;
+        font-size: clamp(2.7rem, 7vw, 5.7rem);
+        line-height: 0.92;
+        letter-spacing: -0.05em;
       }
 
-      .tag {
-        margin-top: 24px;
+      .role {
+        margin: 14px 0 0;
+        max-width: 48ch;
+        color: var(--muted);
+        font-size: clamp(1rem, 2.1vw, 1.18rem);
+        line-height: 1.75;
+      }
+
+      .meta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 22px;
+      }
+
+      .pill {
         display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
         border-radius: 999px;
-        background: #ffffff;
-        border: 1px solid rgba(27, 26, 25, 0.1);
-        padding: 10px 16px;
+        border: 1px solid var(--line-strong);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
         font-size: 0.9rem;
-        font-weight: 600;
+      }
+
+      .pill b {
         color: var(--accent);
+        font-weight: 700;
+      }
+
+      .stack-grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .stack-card {
+        padding: 22px;
+      }
+
+      .stack-card h2,
+      .project-title {
+        margin: 0;
+        font-size: 1.04rem;
+        letter-spacing: 0.01em;
+      }
+
+      .stack-card p,
+      .project-card p,
+      .footer-note,
+      .crumbs {
+        margin: 8px 0 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .tech-cloud {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .tech {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.035);
+        color: #e8f1fa;
+        font-size: 0.89rem;
+      }
+
+      .tech::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        box-shadow: 0 0 0 4px rgba(143, 230, 200, 0.1);
+      }
+
+      .contact-card {
+        margin-top: 18px;
+        padding: 18px 22px;
+      }
+
+      .contact-grid {
+        display: grid;
+        gap: 14px;
+        margin-top: 16px;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 14px 16px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--line);
+      }
+
+      .contact-item span {
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .contact-item strong {
+        font-size: 0.98rem;
+        word-break: break-word;
+      }
+
+      .quick-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 16px;
+        color: rgba(239, 246, 252, 0.55);
+        font-size: 0.78rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .quick-link:hover,
+      .back-btn:hover,
+      .project-link:hover {
+        transform: translateY(-1px);
+      }
+
+      .section {
+        margin-top: 26px;
+        padding: 28px;
+      }
+
+      .section-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      .crumbs strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 11px 16px;
+        border-radius: 999px;
+        border: 1px solid var(--line-strong);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
+        font-size: 0.9rem;
+      }
+
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .project-card {
+        grid-column: span 6;
+        padding: 22px;
+        border-radius: 22px;
+        border: 1px solid var(--line);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+          var(--panel-strong);
+      }
+
+      .project-card.featured {
+        grid-column: span 12;
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+        gap: 18px;
+        align-items: end;
+        background:
+          radial-gradient(circle at top right, rgba(143, 230, 200, 0.12), transparent 34%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+          var(--panel-strong);
+      }
+
+      .project-kicker {
+        display: inline-flex;
+        padding: 7px 10px;
+        border-radius: 999px;
+        background: rgba(143, 230, 200, 0.12);
+        color: var(--accent);
+        font-size: 0.78rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .project-title {
+        margin-top: 12px;
+        font-size: 1.4rem;
+      }
+
+      .project-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 16px;
+        color: var(--accent);
+        font-size: 0.92rem;
+      }
+
+      .project-link span {
+        color: rgba(143, 230, 200, 0.65);
+      }
+
+      .logo-slot {
+        position: relative;
+        min-height: 220px;
+        border-radius: 24px;
+        border: 1px solid var(--line);
+        background:
+          radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.14), transparent 32%),
+          linear-gradient(180deg, rgba(125, 168, 255, 0.12), rgba(7, 17, 29, 0.08));
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+      }
+
+      .logo-slot::before {
+        content: "Logo";
+        position: absolute;
+        inset: auto auto 18px 18px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(7, 17, 29, 0.55);
+        color: rgba(239, 246, 252, 0.7);
+        font-size: 0.78rem;
+        border: 1px solid var(--line);
+      }
+
+      .logo-slot span {
+        display: inline-grid;
+        place-items: center;
+        width: 108px;
+        height: 108px;
+        border-radius: 28px;
+        border: 1px solid var(--line-strong);
+        background:
+          radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.28), transparent 36%),
+          linear-gradient(135deg, rgba(143, 230, 200, 0.95), rgba(125, 168, 255, 0.95));
+        color: #07111d;
+        font-weight: 900;
+        font-size: 2rem;
+        letter-spacing: 0.04em;
+      }
+
+      .footer-note {
+        color: rgba(239, 246, 252, 0.48);
+        font-size: 0.82rem;
+        line-height: 1.7;
+      }
+
+      @media (max-width: 940px) {
+        .hero,
+        .project-card.featured {
+          grid-template-columns: 1fr;
+        }
+
+        .project-card {
+          grid-column: span 12;
+        }
+      }
+
+      @media (max-width: 680px) {
+        body {
+          padding: 14px;
+        }
+
+        .card__top,
+        .card__body,
+        .section {
+          padding-left: 18px;
+          padding-right: 18px;
+        }
+
+        .card__top {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .identity,
+        .stack-card,
+        .contact-card,
+        .section,
+        .project-card {
+          padding: 18px;
+        }
+
+        h1 {
+          font-size: clamp(2.3rem, 14vw, 4rem);
+        }
+
+        .logo-slot {
+          min-height: 180px;
+        }
       }
     </style>
   </head>
   <body>
-    <main class="home">
-      <h1>jhosep</h1>
-      <p>Home de mis proyectos mas importantes.</p>
-      <span class="tag">Pronto: portafolio de proyectos</span>
+    <main class="shell">
+      <section class="card" id="home">
+        <div class="card__top">
+          <div class="brandline">
+            <div class="brandmark">n</div>
+            <div class="brandcopy">
+              <strong>nicao.tech</strong>
+              <span>Jhosep Quiroz | Dev Full Stack</span>
+            </div>
+          </div>
+          <div class="badge">Single-page virtual card</div>
+        </div>
+
+        <div class="card__body">
+          <div class="hero">
+            <article class="panel identity">
+              <span class="eyebrow">Professional identity</span>
+              <h1>Jhosep Quiroz</h1>
+              <p class="role">Dev Full Stack en nicao.tech. Construimos productos web con foco en Node.js, Rails y Python, con una identidad visual sobria, tecnologica y premium.</p>
+
+              <div class="meta-row">
+                <div class="pill"><b>Marca:</b> nicao.tech</div>
+                <div class="pill"><b>URL:</b> nicao.tech</div>
+                <div class="pill"><b>Correo:</b> info@nicao.com.ar</div>
+              </div>
+
+              <a class="quick-link" href="#projects">proyectos</a>
+
+              <p class="footer-note">Una tarjeta virtual pensada para presentar la marca, el perfil profesional y el acceso a proyectos clave sin salir de esta misma pagina.</p>
+            </article>
+
+            <aside class="stack-grid">
+              <section class="panel stack-card">
+                <h2>Backend stack</h2>
+                <p>10 lenguajes para backend con enfoque moderno y escalable.</p>
+                <div class="tech-cloud">
+                  <span class="tech">JavaScript</span>
+                  <span class="tech">TypeScript</span>
+                  <span class="tech">Python</span>
+                  <span class="tech">Ruby</span>
+                  <span class="tech">Go</span>
+                  <span class="tech">Java</span>
+                  <span class="tech">C#</span>
+                  <span class="tech">PHP</span>
+                  <span class="tech">Rust</span>
+                  <span class="tech">Elixir</span>
+                </div>
+              </section>
+
+              <section class="panel stack-card">
+                <h2>Frontend stack</h2>
+                <p>10 lenguajes y frameworks para interfaces rapidas, elegantes y mantenibles.</p>
+                <div class="tech-cloud">
+                  <span class="tech">React</span>
+                  <span class="tech">Next.js</span>
+                  <span class="tech">Vue</span>
+                  <span class="tech">Nuxt</span>
+                  <span class="tech">Svelte</span>
+                  <span class="tech">Angular</span>
+                  <span class="tech">Astro</span>
+                  <span class="tech">Tailwind</span>
+                  <span class="tech">HTML5</span>
+                  <span class="tech">CSS3</span>
+                </div>
+              </section>
+
+              <section class="panel contact-card">
+                <h2>Contacto</h2>
+                <div class="contact-grid">
+                  <div class="contact-item">
+                    <span>Email</span>
+                    <strong>info@nicao.com.ar</strong>
+                  </div>
+                  <div class="contact-item">
+                    <span>Marca principal</span>
+                    <strong>nicao.tech</strong>
+                  </div>
+                </div>
+              </section>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="card section" id="projects">
+        <div class="section-head">
+          <div>
+            <div class="crumbs">inicio / <strong>proyectos</strong></div>
+            <h2 class="project-title" style="font-size: clamp(1.8rem, 4vw, 2.6rem); margin-top: 10px;">Proyectos destacados</h2>
+          </div>
+          <a class="back-btn" href="#home">volver al inicio</a>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card featured">
+            <div>
+              <span class="project-kicker">Principal</span>
+              <div class="project-title">nicao.tech</div>
+              <p>La web principal de la marca, pensada como centro de identidad, servicios y presencia digital.</p>
+              <a class="project-link" href="https://nicao.tech" target="_self" rel="noopener">Abrir proyecto <span>→</span></a>
+            </div>
+            <div class="logo-slot" aria-label="Espacio para logo">
+              <span>N</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <span class="project-kicker">Site</span>
+            <div class="project-title">fgnewgen.org</div>
+            <p>Proyecto institucional con foco en crecimiento, orden visual y experiencia clara.</p>
+            <a class="project-link" href="https://fgnewgen.org" target="_self" rel="noopener">Ir al sitio <span>→</span></a>
+          </article>
+
+          <article class="project-card">
+            <span class="project-kicker">Site</span>
+            <div class="project-title">bo.fgnewgen.org</div>
+            <p>Subportal orientado a operaciones y contenido interno de la marca FG New Gen.</p>
+            <a class="project-link" href="https://bo.fgnewgen.org" target="_self" rel="noopener">Ir al sitio <span>→</span></a>
+          </article>
+
+          <article class="project-card">
+            <span class="project-kicker">Brand</span>
+            <div class="project-title">nicao.com.ar</div>
+            <p>Presencia local de la marca para contacto, identidad y posicionamiento regional.</p>
+            <a class="project-link" href="https://nicao.com.ar" target="_self" rel="noopener">Ir al sitio <span>→</span></a>
+          </article>
+
+          <article class="project-card">
+            <span class="project-kicker">Product</span>
+            <div class="project-title">Facturador argentino</div>
+            <p>Facturador electronico en desarrollo, preparado para evolucionar como producto propio.</p>
+          </article>
+        </div>
+      </section>
     </main>
   </body>
 </html>
