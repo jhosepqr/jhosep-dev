@@ -93,6 +93,15 @@ const DotField = memo(({
       mouseRef.current.y = e.pageY - s.offsetY;
     }
 
+    function onTouchMove(e) {
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        const s = sizeRef.current;
+        mouseRef.current.x = touch.pageX - s.offsetX;
+        mouseRef.current.y = touch.pageY - s.offsetY;
+      }
+    }
+
     function updateMouseSpeed() {
       const m = mouseRef.current;
       const dx = m.prevX - m.x;
@@ -208,6 +217,8 @@ const DotField = memo(({
     doResize();
     window.addEventListener('resize', resize);
     window.addEventListener('mousemove', onMouseMove, { passive: true });
+    window.addEventListener('touchstart', onTouchMove, { passive: true });
+    window.addEventListener('touchmove', onTouchMove, { passive: true });
     rafRef.current = requestAnimationFrame(tick);
 
     rebuildRef.current = () => {
@@ -221,6 +232,8 @@ const DotField = memo(({
       clearTimeout(resizeTimer);
       window.removeEventListener('resize', resize);
       window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('touchstart', onTouchMove);
+      window.removeEventListener('touchmove', onTouchMove);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
