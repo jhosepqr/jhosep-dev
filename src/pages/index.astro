@@ -256,6 +256,18 @@ import Projects from '../components/Projects.astro';
           const containerHeight = scrollContainer.clientHeight;
           const scrollTop = scrollContainer.scrollTop;
 
+          // Fade out the floating scroll hint when scrolling down
+          const hint = document.querySelector('.scroll-hint');
+          if (hint) {
+            if (scrollTop > 40) {
+              hint.style.opacity = '0';
+              hint.style.visibility = 'hidden';
+            } else {
+              hint.style.opacity = '0.5';
+              hint.style.visibility = 'visible';
+            }
+          }
+
           cards.forEach((card) => {
             const cardTop = card.offsetTop - scrollContainer.offsetTop;
             const distance = Math.abs(cardTop - scrollTop);
