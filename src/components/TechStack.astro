@@ -1,0 +1,190 @@
+---
+---
+              <!-- Left: Identity Information -->
+              <article class="identity-panel">
+                <div class="intro-block">
+                  <span class="identity-eyebrow">Dev Full Stack</span>
+                  <p class="intro-desc">
+                    Transformamos tu visión en <strong>software a medida</strong> diseñado para escalar. Desde arquitecturas <strong>DevOps</strong> de alto rendimiento hasta interfaces inmersivas, dominamos el espectro tecnológico completo para construir la solución exacta que tu negocio necesita.
+                  </p>
+                  
+                  <div class="highlight-pills">
+                    <div class="highlight-pill node" title="Especialistas en DevOps & Cloud" style="background: rgba(56, 189, 248, 0.1); border-color: rgba(56, 189, 248, 0.3); color: #38bdf8;">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                      <span>DevOps & Cloud</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Mobile Switcher Tabs (Only visible on Mobile viewports) -->
+                <div class="mobile-switcher-bar">
+                  <button class="switcher-btn active" id="sw-back" onclick="toggleMobileStack('backend')">Backend</button>
+                  <button class="switcher-btn" id="sw-front" onclick="toggleMobileStack('frontend')">Frontend</button>
+                </div>
+
+                <!-- Contact Info & Subtle Link -->
+                <div class="contact-block">
+                  <div class="email-interactive">
+                    <span class="email-text">info@nikao.com.ar</span>
+                    <div class="email-actions">
+                      <button class="btn-icon" id="copy-btn" title="Copiar correo" aria-label="Copiar correo electronico">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                      </button>
+                      <a class="btn-icon" href="mailto:info@nikao.com.ar" title="Enviar correo electrónico" aria-label="Enviar correo">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                          <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+
+                  <!-- Striking link to Projects section -->
+                  <a class="primary-projects-btn" onclick="navigateTo('projects-view')" href="#projects">
+                    <span>Ver Proyectos</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </a>
+                </div>
+              </article>
+
+<style>
+  .primary-projects-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #94a3b8;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    margin-left: auto;
+  }
+  
+  .primary-projects-btn:hover {
+    transform: translateY(-2px);
+    background: rgba(56, 189, 248, 0.1);
+    border-color: rgba(56, 189, 248, 0.4);
+    color: #38bdf8;
+    box-shadow: 0 8px 20px rgba(56, 189, 248, 0.15);
+  }
+
+  .primary-projects-btn svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .primary-projects-btn:hover svg {
+    transform: translateX(4px);
+  }
+</style>
+
+              <!-- Right: Stacks (Adaptive layout side-by-side or tabs) -->
+              <aside class="stacks-panel">
+                
+                <!-- Backend Stack Box -->
+                <section class="stack-box is-active" id="box-backend">
+                  <h2>Tecnologías Backend</h2>
+                  <div class="grid-icons">
+                    <!-- 1. Node.js -->
+                    <div class="icon-card" data-tech="Node.js" style="--hover-color: #83CD29; --hover-glow: rgba(131,205,41,0.25);">
+                      <i class="devicon-nodejs-plain"></i>
+                    </div>
+                    <!-- 2. Rails -->
+                    <div class="icon-card" data-tech="Ruby on Rails" style="--hover-color: #CC0000; --hover-glow: rgba(204,0,0,0.25);">
+                      <i class="devicon-rails-plain"></i>
+                    </div>
+                    <!-- 3. Python -->
+                    <div class="icon-card" data-tech="Python" style="--hover-color: #3776AB; --hover-glow: rgba(55,118,171,0.25);">
+                      <i class="devicon-python-plain"></i>
+                    </div>
+                    <!-- 4. Go -->
+                    <div class="icon-card" data-tech="Go" style="--hover-color: #00ADD8; --hover-glow: rgba(0,173,216,0.25);">
+                      <i class="devicon-go-plain"></i>
+                    </div>
+                    <!-- 5. Rust -->
+                    <div class="icon-card" data-tech="Rust" style="--hover-color: #DEA584; --hover-glow: rgba(222,165,132,0.25);">
+                      <i class="devicon-rust-original"></i>
+                    </div>
+                    <!-- 6. PHP -->
+                    <div class="icon-card" data-tech="PHP" style="--hover-color: #777BB4; --hover-glow: rgba(119,123,180,0.25);">
+                      <i class="devicon-php-plain"></i>
+                    </div>
+                    <!-- 7. Java -->
+                    <div class="icon-card" data-tech="Java" style="--hover-color: #007396; --hover-glow: rgba(0,115,150,0.25);">
+                      <i class="devicon-java-plain"></i>
+                    </div>
+                    <!-- 8. C# -->
+                    <div class="icon-card" data-tech="C#" style="--hover-color: #512BD4; --hover-glow: rgba(81,43,212,0.25);">
+                      <i class="devicon-csharp-plain"></i>
+                    </div>
+                    <!-- 9. Elixir -->
+                    <div class="icon-card" data-tech="Elixir" style="--hover-color: #6E4A7E; --hover-glow: rgba(110,74,126,0.25);">
+                      <i class="devicon-elixir-plain"></i>
+                    </div>
+                    <!-- 10. Kotlin -->
+                    <div class="icon-card" data-tech="Kotlin" style="--hover-color: #7F52FF; --hover-glow: rgba(127,82,255,0.25);">
+                      <i class="devicon-kotlin-plain"></i>
+                    </div>
+                  </div>
+                </section>
+
+                <!-- Frontend Stack Box -->
+                <section class="stack-box" id="box-frontend">
+                  <h2>Tecnologías Frontend</h2>
+                  <div class="grid-icons">
+                    <!-- 1. React -->
+                    <div class="icon-card" data-tech="React" style="--hover-color: #61DAFB; --hover-glow: rgba(97,218,251,0.25);">
+                      <i class="devicon-react-original"></i>
+                    </div>
+                    <!-- 2. Next.js -->
+                    <div class="icon-card" data-tech="Next.js" style="--hover-color: #FFFFFF; --hover-glow: rgba(255,255,255,0.15);">
+                      <i class="devicon-nextjs-plain"></i>
+                    </div>
+                    <!-- 3. Vue -->
+                    <div class="icon-card" data-tech="Vue.js" style="--hover-color: #4FC08D; --hover-glow: rgba(79,192,141,0.25);">
+                      <i class="devicon-vuejs-plain"></i>
+                    </div>
+                    <!-- 4. Svelte -->
+                    <div class="icon-card" data-tech="Svelte" style="--hover-color: #FF3E00; --hover-glow: rgba(255,62,0,0.25);">
+                      <i class="devicon-svelte-plain"></i>
+                    </div>
+                    <!-- 5. Angular -->
+                    <div class="icon-card" data-tech="Angular" style="--hover-color: #DD0031; --hover-glow: rgba(221,0,49,0.25);">
+                      <i class="devicon-angular-plain"></i>
+                    </div>
+                    <!-- 6. Astro -->
+                    <div class="icon-card" data-tech="Astro" style="--hover-color: #FF5D01; --hover-glow: rgba(255,93,1,0.25);">
+                      <i class="devicon-astro-plain"></i>
+                    </div>
+                    <!-- 7. TypeScript -->
+                    <div class="icon-card" data-tech="TypeScript" style="--hover-color: #3178C6; --hover-glow: rgba(49,120,198,0.25);">
+                      <i class="devicon-typescript-plain"></i>
+                    </div>
+                    <!-- 8. Tailwind -->
+                    <div class="icon-card" data-tech="Tailwind" style="--hover-color: #06B6D4; --hover-glow: rgba(6,182,212,0.25);">
+                      <i class="devicon-tailwindcss-original"></i>
+                    </div>
+                    <!-- 9. SolidJS -->
+                    <div class="icon-card" data-tech="SolidJS" style="--hover-color: #4F88C6; --hover-glow: rgba(79,136,198,0.25);">
+                      <i class="devicon-solidjs-plain"></i>
+                    </div>
+                    <!-- 10. Vite -->
+                    <div class="icon-card" data-tech="Vite" style="--hover-color: #646CFF; --hover-glow: rgba(100,108,255,0.25);">
+                      <i class="devicon-vitejs-plain"></i>
+                    </div>
+                  </div>
+                </section>
+              </aside>

@@ -1,0 +1,249 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Background from '../components/Background.astro';
+import Header from '../components/Header.astro';
+import TechStack from '../components/TechStack.astro';
+import Projects from '../components/Projects.astro';
+---
+
+<Layout title="nikao.tech | Jhosep Quiroz - Dev Full Stack">
+  <Background />
+  
+  <!-- Base Layout Container - Locked to fit single screen -->
+  <main class="shell">
+    
+    <!-- Card Container (Strictly scroll-free) -->
+    <div class="card-container">
+      
+      <Header />
+
+      <!-- CARD BODY AREA -->
+      <div class="card-body-wrapper">
+        <div class="card-body-inner">
+          
+          <!-- VIEW 1: HOME SECTION -->
+          <section id="home-view" class="section-view is-active">
+            <div class="grid-layout">
+              <TechStack />
+            </div>
+          </section>
+
+          <Projects />
+
+        </div>
+      </div>
+      
+    </div>
+  </main>
+
+  <!-- Copy Toast Notification -->
+  <div id="copy-toast" class="toast-notification">
+    <div class="toast-content">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 6L9 17l-5-5"></path>
+      </svg>
+      <span>Correo copiado</span>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .toast-notification {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px) scale(0.95);
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(99, 102, 241, 0.2);
+    padding: 12px 24px;
+    border-radius: 50px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 9999;
+    backdrop-filter: blur(12px);
+  }
+
+  .toast-notification.is-visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  .toast-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #fff;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+  }
+
+  .toast-content svg {
+    width: 20px;
+    height: 20px;
+    stroke: #4ade80;
+  }
+</style>
+
+<script>
+
+      // Single-Page View Transitions
+      function navigateTo(targetId) {
+        const homeView = document.getElementById('home-view');
+        const projectsView = document.getElementById('projects-view');
+        
+        const transition = () => {
+          if (targetId === 'home-view') {
+            homeView.classList.remove('is-hidden');
+            homeView.classList.add('is-visible');
+            projectsView.classList.remove('is-visible');
+            projectsView.classList.add('is-hidden');
+            history.pushState(null, null, '#home');
+          } else {
+            homeView.classList.remove('is-visible');
+            homeView.classList.add('is-hidden');
+            projectsView.classList.remove('is-hidden');
+            projectsView.classList.add('is-visible');
+            history.pushState(null, null, '#projects');
+          }
+        };
+
+        if (document.startViewTransition) {
+          document.startViewTransition(transition);
+        } else {
+          transition();
+        }
+      }
+      window.navigateTo = navigateTo;
+
+      // Sync route based on browser back/forward (URL hash changes)
+      window.addEventListener('hashchange', () => {
+        const hash = window.location.hash;
+        if (hash === '#projects') {
+          navigateTo('projects-view');
+        } else {
+          navigateTo('home-view');
+        }
+      });
+
+      // Handle direct link entry
+      window.addEventListener('DOMContentLoaded', () => {
+        const hash = window.location.hash;
+        const homeView = document.getElementById('home-view');
+        const projectsView = document.getElementById('projects-view');
+        
+        if (hash === '#projects') {
+          homeView.classList.add('is-hidden');
+          homeView.classList.remove('is-visible');
+          projectsView.classList.add('is-visible');
+          projectsView.classList.remove('is-hidden');
+        } else {
+          homeView.classList.add('is-visible');
+          homeView.classList.remove('is-hidden');
+          projectsView.classList.add('is-hidden');
+          projectsView.classList.remove('is-visible');
+        }
+      });
+
+      // Mobile Tech Stacks toggle switcher
+      function toggleMobileStack(stackType) {
+        const boxBackend = document.getElementById('box-backend');
+        const boxFrontend = document.getElementById('box-frontend');
+        const btnBack = document.getElementById('sw-back');
+        const btnFront = document.getElementById('sw-front');
+
+        if (stackType === 'backend') {
+          boxBackend.classList.add('is-active');
+          boxFrontend.classList.remove('is-active');
+          btnBack.classList.add('active');
+          btnFront.classList.remove('active');
+        } else {
+          boxBackend.classList.remove('is-active');
+          boxFrontend.classList.add('is-active');
+          btnBack.classList.remove('active');
+          btnFront.classList.add('active');
+        }
+      }
+      window.toggleMobileStack = toggleMobileStack;
+
+      // Sync Mobile Stacks visible box when resizing (fallback check)
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+          document.getElementById('box-backend').classList.add('is-active');
+          document.getElementById('box-frontend').classList.add('is-active');
+        } else {
+          // mobile default to active button state
+          const btnBack = document.getElementById('sw-back');
+          if (btnBack.classList.contains('active')) {
+            toggleMobileStack('backend');
+          } else {
+            toggleMobileStack('frontend');
+          }
+        }
+      });
+
+      // Email clipboard copy
+      const copyBtn = document.getElementById('copy-btn');
+      const emailText = "info@nikao.com.ar";
+      const toast = document.getElementById('copy-toast');
+
+      copyBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(emailText);
+          copyBtn.classList.add('copied');
+          setTimeout(() => copyBtn.classList.remove('copied'), 2000);
+          
+          toast.classList.add('is-visible');
+          setTimeout(() => toast.classList.remove('is-visible'), 3000);
+        } catch (err) {
+          // clipboard copy fallback
+          const el = document.createElement('textarea');
+          el.value = emailText;
+          document.body.appendChild(el);
+          el.select();
+          document.execCommand('copy');
+          document.body.removeChild(el);
+
+          toast.classList.add('is-visible');
+          setTimeout(() => toast.classList.remove('is-visible'), 3000);
+        }
+      });
+
+      // 3D Tilt Effect — follows mouse over the card
+      (() => {
+        const card = document.querySelector('.card-container');
+        const shell = document.querySelector('.shell');
+        if (!card || !shell) return;
+
+        const MAX_TILT = 8; // degrees
+
+        // Only enable on non-touch / desktop
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        if (isTouchDevice) return;
+
+        shell.addEventListener('mousemove', (e) => {
+          const rect = shell.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          // Normalize -1 to 1
+          const nx = (x / rect.width) * 2 - 1;
+          const ny = (y / rect.height) * 2 - 1;
+
+          // rotateY follows X axis, rotateX follows inverted Y axis
+          const rotY = nx * MAX_TILT;
+          const rotX = -ny * MAX_TILT;
+
+          card.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+          card.classList.add('is-tilting');
+        });
+
+        shell.addEventListener('mouseleave', () => {
+          card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+          card.classList.remove('is-tilting');
+        });
+      })();
+    
+</script>
