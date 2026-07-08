@@ -297,5 +297,35 @@ import Projects from '../components/Projects.astro';
         }, { threshold: 0.1 });
         observer.observe(scrollContainer);
       })();
+
+      // Mobile tech icon tooltip toggle on tap
+      (() => {
+        const iconCards = document.querySelectorAll('.icon-card');
+        
+        iconCards.forEach(card => {
+          card.addEventListener('click', (e) => {
+            // Only apply click toggle on touchscreens (coarse pointer)
+            const isCoarse = window.matchMedia("(pointer: coarse)").matches;
+            if (!isCoarse) return;
+
+            e.stopPropagation(); // Prevent body click from immediate dismissal
+            
+            const isActive = card.classList.contains('is-active');
+            
+            // Remove active from all other cards
+            iconCards.forEach(c => c.classList.remove('is-active'));
+            
+            // Toggle active state for current card
+            if (!isActive) {
+              card.classList.add('is-active');
+            }
+          });
+        });
+
+        // Hide tooltips when clicking outside
+        document.body.addEventListener('click', () => {
+          iconCards.forEach(c => c.classList.remove('is-active'));
+        });
+      })();
     
 </script>

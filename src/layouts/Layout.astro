@@ -585,20 +585,23 @@ const { title } = Astro.props;
         transform: translateX(-50%) translateY(-3px);
       }
 
-      .icon-card:hover::after {
+      .icon-card:hover::after,
+      .icon-card.is-active::after {
         opacity: 1;
         visibility: visible;
         transform: translateX(-50%) translateY(0);
       }
 
-      .icon-card:hover {
+      .icon-card:hover,
+      .icon-card.is-active {
         transform: translateY(-2px) scale(1.04);
         border-color: var(--hover-color);
         box-shadow: 0 0 12px var(--hover-glow);
         background: rgba(255, 255, 255, 0.03);
       }
 
-      .icon-card:hover i {
+      .icon-card:hover i,
+      .icon-card.is-active i {
         color: var(--hover-color);
         filter: drop-shadow(0 0 3px var(--hover-glow));
       }
@@ -882,12 +885,12 @@ const { title } = Astro.props;
       /* RESPONSIVE DESIGN - STRICT SCROLL-FREE VIEWPORT DESIGN */
       @media (max-width: 768px) {
         body {
-          padding: 12px;
+          padding: 16px;
         }
 
         .shell {
           height: 100%;
-          max-height: calc(100dvh - 24px);
+          max-height: calc(100dvh - 32px);
         }
 
         .grid-layout {
