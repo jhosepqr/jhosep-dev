@@ -245,5 +245,45 @@ import Projects from '../components/Projects.astro';
           card.classList.remove('is-tilting');
         });
       })();
+
+      // Mobile Projects vertical scroll visual effects (fade + blur)
+      (() => {
+        const scrollContainer = document.querySelector('.mobile-scroll-row');
+        if (!scrollContainer) return;
+
+        function updateScrollEffects() {
+          const cards = scrollContainer.querySelectorAll('.mobile-carousel-card');
+          const containerHeight = scrollContainer.clientHeight;
+          const scrollTop = scrollContainer.scrollTop;
+
+          cards.forEach((card) => {
+            const cardTop = card.offsetTop - scrollContainer.offsetTop;
+            const distance = Math.abs(cardTop - scrollTop);
+            const ratio = Math.min(distance / containerHeight, 1);
+
+            // Calculate fade, blur and scaling
+            const opacity = 1 - ratio * 1.5;
+            const blur = ratio * 10;
+            const scale = 1 - ratio * 0.05;
+
+            card.style.opacity = Math.max(opacity, 0);
+            card.style.filter = `blur(${blur}px)`;
+            card.style.transform = `scale(${scale})`;
+          });
+        }
+
+        scrollContainer.addEventListener('scroll', updateScrollEffects, { passive: true });
+        window.addEventListener('resize', updateScrollEffects);
+        
+        // Run update when container becomes visible
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              updateScrollEffects();
+            }
+          });
+        }, { threshold: 0.1 });
+        observer.observe(scrollContainer);
+      })();
     
 </script>

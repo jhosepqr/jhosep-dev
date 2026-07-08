@@ -578,6 +578,13 @@ const { title } = Astro.props;
         z-index: 10;
       }
 
+      /* Position tooltips downward for the top row to prevent clipping */
+      .icon-card:nth-child(-n+5)::after {
+        bottom: auto;
+        top: 115%;
+        transform: translateX(-50%) translateY(-3px);
+      }
+
       .icon-card:hover::after {
         opacity: 1;
         visibility: visible;
@@ -1004,34 +1011,28 @@ const { title } = Astro.props;
 
         .mobile-scroll-row {
           display: flex;
-          flex-direction: row;
-          gap: 12px;
-          overflow-x: auto;
-          overflow-y: hidden;
-          scroll-snap-type: x mandatory;
-          padding: 8px 16px 12px 16px;
+          flex-direction: column;
+          gap: 16px;
+          overflow-y: auto;
+          overflow-x: hidden;
+          scroll-snap-type: y mandatory;
+          padding: 12px 16px;
           height: 100%;
           width: 100%;
           max-width: 100%;
           min-width: 0;
-          align-items: stretch;
+          box-sizing: border-box;
           -webkit-overflow-scrolling: touch;
+          scrollbar-width: none; /* Firefox */
         }
 
         .mobile-scroll-row::-webkit-scrollbar {
-          height: 3px;
-        }
-        .mobile-scroll-row::-webkit-scrollbar-track {
-          background: rgba(255, 255, 255, 0.01);
-        }
-        .mobile-scroll-row::-webkit-scrollbar-thumb {
-          background: var(--accent-blue);
-          border-radius: 10px;
+          display: none; /* Chrome/Safari */
         }
 
         .mobile-carousel-card {
-          flex: 0 0 calc(100% - 24px);
-          width: calc(100% - 24px);
+          flex: 0 0 100%;
+          width: 100%;
           max-width: 100%;
           scroll-snap-align: center;
           display: flex;
@@ -1042,6 +1043,8 @@ const { title } = Astro.props;
           border-radius: var(--radius-lg);
           padding: 16px;
           height: 100%;
+          box-sizing: border-box;
+          will-change: transform, opacity, filter;
         }
 
         .mobile-carousel-card .project-title {
