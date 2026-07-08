@@ -51,6 +51,13 @@ const DotField = memo(({
       const w = rect.width;
       const h = rect.height;
 
+      // Dynamically boost particle size, density and brightness on mobile screens
+      const isMobile = window.innerWidth <= 768;
+      propsRef.current.dotRadius = isMobile ? 3.0 : dotRadius;
+      propsRef.current.dotSpacing = isMobile ? 12 : dotSpacing;
+      propsRef.current.gradientFrom = isMobile ? 'rgba(56, 189, 248, 0.8)' : gradientFrom;
+      propsRef.current.gradientTo = isMobile ? 'rgba(99, 102, 241, 0.65)' : gradientTo;
+
       canvas.width = w * dpr;
       canvas.height = h * dpr;
       canvas.style.width = `${w}px`;
